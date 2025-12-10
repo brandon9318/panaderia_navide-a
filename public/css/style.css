@@ -1,0 +1,308 @@
+/* =================================================================
+   1. VARIABLES Y CONFIGURACIÓN BASE
+   ================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Pacifico&display=swap');
+
+:root {
+    /* Paleta Principal (Panadería) */
+    --color-primary: #8B4513;    /* Café Chocolate */
+    --color-secondary: #D2691E;  /* Chocolate suave */
+    --color-accent: #FFA500;     /* Naranja Pan */
+    --color-bg: #FFF8E1;         /* Crema/Vainilla */
+    --color-text: #4A2E2E;       /* Café oscuro texto */
+    
+    /* Paleta Navidad */
+    --color-navidad-red: #c41e3a;
+    --color-navidad-green: #2e8b57;
+    
+    /* Paleta Halloween/Muertos */
+    --color-halloween-dark: #2c3e50;
+    --color-muertos-purple: #9b59b6;
+
+    /* Fuentes */
+    --font-heading: 'Pacifico', cursive;
+    --font-body: 'Merriweather', serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-bg);
+    font-family: var(--font-body);
+    color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* =================================================================
+   2. NAVBAR Y HEADER
+   ================================================================= */
+.navbar {
+    background-color: var(--color-primary) !important;
+    border-bottom: 5px solid var(--color-accent);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.navbar-brand.logo-font {
+    font-family: var(--font-heading);
+    color: var(--color-bg) !important;
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.navbar-nav .nav-link {
+    font-weight: 700;
+    color: rgba(255, 248, 225, 0.8) !important;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: var(--color-accent) !important;
+    transform: scale(1.05);
+}
+
+/* Badge del carrito */
+#cart-count {
+    background-color: var(--color-accent) !important;
+    color: var(--color-primary);
+    font-weight: bold;
+    border: 1px solid #fff;
+}
+
+header {
+    background: linear-gradient(135deg, #ffffff 0%, var(--color-bg) 100%);
+    padding: 4rem 0;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+}
+
+header h1.seasonal-title {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 0px rgba(255, 165, 0, 0.2);
+}
+
+/* =================================================================
+   3. BOTONES DE CATEGORÍA (TEMPORADAS)
+   ================================================================= */
+/* Contenedor de botones */
+.btn-seasonal {
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    border-width: 2px;
+    margin: 0 5px 10px 5px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+}
+
+/* Día de Muertos (Naranja y Morado) */
+#btnDiaMuertos {
+    border-color: var(--color-muertos-purple);
+    color: var(--color-muertos-purple);
+}
+#btnDiaMuertos:hover, #btnDiaMuertos.active {
+    background-color: var(--color-muertos-purple);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(155, 89, 182, 0.4);
+}
+
+/* Halloween (Negro y Naranja) */
+#btnHalloween {
+    border-color: var(--color-halloween-dark);
+    color: var(--color-halloween-dark);
+}
+#btnHalloween:hover, #btnHalloween.active {
+    background-color: var(--color-halloween-dark);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(44, 62, 80, 0.4);
+}
+
+/* Navidad (Rojo y Verde) */
+#btnNavidad {
+    border-color: var(--color-navidad-red);
+    color: var(--color-navidad-red);
+}
+#btnNavidad:hover, #btnNavidad.active {
+    background-color: var(--color-navidad-red);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(196, 30, 58, 0.4);
+}
+
+/* =================================================================
+   4. TARJETAS DE PRODUCTOS
+   ================================================================= */
+.product-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; /* Asegura altura igual */
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(139, 69, 19, 0.15);
+}
+
+.product-card .card-img-top {
+    height: 220px;
+    object-fit: cover; /* Recorta la imagen para que llene el espacio sin deformarse */
+    border-bottom: 3px solid var(--color-accent);
+}
+
+.product-card .card-body {
+    padding: 1.5rem;
+}
+
+.product-card .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.product-card .card-text strong {
+    color: var(--color-navidad-green); /* Precio en verde */
+    font-size: 1.1em;
+}
+
+/* Botones dentro de la tarjeta */
+.add-to-cart-btn {
+    background-color: var(--color-primary);
+    border: none;
+}
+.add-to-cart-btn:hover {
+    background-color: var(--color-secondary);
+}
+
+/* =================================================================
+   5. MODALES Y FORMULARIOS (LOGIN/TABS)
+   ================================================================= */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    overflow: hidden;
+}
+
+.modal-header {
+    background-color: var(--color-primary);
+    color: #fff;
+    border-bottom: none;
+}
+
+.modal-title {
+    color: #fff !important;
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Estilos de las Pestañas (Tabs) en el Modal */
+.nav-pills .nav-link {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--color-secondary);
+    color: #fff;
+}
+
+/* Selección de tipo de usuario (Botones grandes) */
+#loginTypeModal .btn-outline-primary {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+#loginTypeModal .btn-outline-primary:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+#loginTypeModal .btn-outline-warning {
+    color: var(--color-text);
+    border-color: var(--color-accent);
+}
+#loginTypeModal .btn-outline-warning:hover {
+    background-color: var(--color-accent);
+}
+
+/* =================================================================
+   6. GESTIÓN Y CARRITO
+   ================================================================= */
+/* Carrito */
+#cartItemsContainer {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.cart-total-display {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+/* Tabla de Gestión */
+.table thead {
+    background-color: var(--color-secondary);
+    color: white;
+}
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 165, 0, 0.1);
+}
+
+/* =================================================================
+   7. MAPA Y FOOTER
+   ================================================================= */
+#map {
+    border: 5px solid #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+footer.footer-custom {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    margin-top: 4rem;
+    border-top: 5px solid var(--color-accent);
+}
+
+footer a {
+    color: var(--color-accent);
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary);
+}
+
+/* Animaciones suaves */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal.show .modal-dialog {
+    animation: fadeIn 0.3s ease-out;
+}
