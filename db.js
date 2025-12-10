@@ -1,25 +1,25 @@
-const mysql = require('mysql2/promise');
+const { Pool } = require('pg');
 require('dotenv').config();
 
-const pool = mysql.createPool({
-    // Aquí está el truco: Si existe una variable de entorno, úsala. Si no, usa localhost.
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || 'n0m3l0',
-    database: process.env.DB_NAME || 'panaderia_navidena',
-    port: process.env.DB_PORT || 3306,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+// Configuración de conexión
+// Render nos dará una variable llamada INTERNAL_DATABASE_URL o DATABASE_URL
+const connectionString = process.env.INTERNAL_DATABASE_URL || process.env.DATABASE_URL;
+
+const pool = new Pool({
+    connectionString: connectionString,
+    // SSL es necesario para Render, pero no para localhost (usualmente)
+    ssl: connectionString ? { rejectUnauthorized: false } : false
 });
 
-pool.getConnection()
-    .then(connection => {
-        console.log('✅ Base de Datos conectada exitosamente');
-        connection.release();
+pool.connect()
+    .then(client => {
+        console.log('✅ Conectado exitosamente a PostgreSQL');
+        client.release();
     })
-    .catch(error => {
-        console.error('❌ Error conectando a la BD:', error.message);
+    .catch(err => {
+        console.error('❌ Error conectando a la BD:', err.message);
+        // Nota: Si estás en local y no tienes Postgres instalado, esto fallará, 
+        // pero funcionará en la nube.
     });
 
 module.exports = pool;
